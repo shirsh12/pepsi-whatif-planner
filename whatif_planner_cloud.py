@@ -105,14 +105,14 @@ MODEL_DATA = [
         "brand":              "PepsiCo",
         "avg_unit_sales":     337_780,
         "avg_price":          6.03,
-        "avg_tpr_depth":      28.4,
+        "avg_tpr_depth":      13.9,          # Updated: Window=13 rolling max (was 28.4 W=7 median)
         "promo_freq_pct":     80.0,
-        "edlp_elasticity":   -2.3976,
-        "promo_elasticity":   0.02977,
-        "cross_price_elast":  1.345,
+        "edlp_elasticity":   -1.7453,        # Updated: Window=13 (was -2.3976)
+        "promo_elasticity":   0.01968,        # Updated: 1.9680÷100 for 0-100 input compat (was 0.02977)
+        "cross_price_elast": -0.528,          # Updated: vs Coke, not sig (p=0.31) (was +1.345)
         "competitor":         "Coke 12oz×12",
-        "r2":                 0.9564,
-        "cv_r2":              0.9434,
+        "r2":                 0.8671,          # Updated: Window=13 model (was 0.9564)
+        "cv_r2":              0.3774,          # Updated: 5-fold CV (was 0.9434)
         "strategy":           "EDLP",
         "strategy_color":     NAVY,
     },
@@ -195,14 +195,14 @@ MODEL_DATA = [
         "brand":              "PepsiCo",
         "avg_unit_sales":     222_271,
         "avg_price":          6.08,
-        "avg_tpr_depth":      31.7,
+        "avg_tpr_depth":      12.2,          # Updated: Window=13 rolling max (was 31.7 W=7 median)
         "promo_freq_pct":     72.4,
-        "edlp_elasticity":   -2.2662,
-        "promo_elasticity":   0.02636,
-        "cross_price_elast":  0.965,
+        "edlp_elasticity":   -1.6365,        # Updated: Window=13 (was -2.2662)
+        "promo_elasticity":   0.01713,        # Updated: 1.7127÷100 for 0-100 input compat (was 0.02636)
+        "cross_price_elast":  0.000,          # Updated: vs Sprite, LASSO dropped (was +0.965)
         "competitor":         "Sprite 12oz×12",
-        "r2":                 0.9697,
-        "cv_r2":              0.9624,
+        "r2":                 0.8715,          # Updated: Window=13 model (was 0.9697)
+        "cv_r2":              0.4513,          # Updated: 5-fold CV (was 0.9624)
         "strategy":           "Promo-Led",
         "strategy_color":     AMBER,
     },
@@ -842,8 +842,8 @@ with tab_portfolio:
                 f"border-radius:4px; font-size:11px; font-weight:700; margin-top:4px; "
                 f"text-align:center;'>{d['strategy']}</div>",
                 unsafe_allow_html=True)
-            r2_col  = GREEN if d["r2"] > 0.90 else (AMBER if d["r2"] > 0.80 else RED)
-            cvr2_col = GREEN if d["cv_r2"] > 0.85 else (AMBER if d["cv_r2"] > 0.70 else RED)
+            r2_col  = GREEN if d["r2"] > 0.85 else (AMBER if d["r2"] > 0.75 else RED)
+            cvr2_col = GREEN if d["cv_r2"] > 0.50 else (AMBER if d["cv_r2"] > 0.35 else RED)
             c6.markdown(
                 f"<div style='font-size:12px; font-weight:700; padding-top:4px;'>"
                 f"<span style='color:{r2_col};'>R2: {d['r2']:.3f}</span>"
