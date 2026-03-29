@@ -107,12 +107,12 @@ MODEL_DATA = [
         "avg_price":          6.03,
         "avg_tpr_depth":      28.4,
         "promo_freq_pct":     80.0,
-        "edlp_elasticity":   -2.432,
+        "edlp_elasticity":   -2.3976,
         "promo_elasticity":   0.02977,
         "cross_price_elast":  1.345,
         "competitor":         "Coke 12oz×12",
-        "r2":                 0.963,
-        "cv_r2":              0.898,
+        "r2":                 0.9564,
+        "cv_r2":              0.9434,
         "strategy":           "EDLP",
         "strategy_color":     NAVY,
     },
@@ -125,12 +125,12 @@ MODEL_DATA = [
         "avg_price":          11.95,
         "avg_tpr_depth":      13.4,
         "promo_freq_pct":     38.1,
-        "edlp_elasticity":    0.213,
+        "edlp_elasticity":   -3.0655,
         "promo_elasticity":   0.04212,
         "cross_price_elast":  0.100,
         "competitor":         "Coke 12oz×24",
-        "r2":                 0.819,
-        "cv_r2":             -0.023,
+        "r2":                 0.9610,
+        "cv_r2":              0.9033,
         "strategy":           "Hybrid",
         "strategy_color":     AMBER,
     },
@@ -143,12 +143,12 @@ MODEL_DATA = [
         "avg_price":          4.56,
         "avg_tpr_depth":      7.5,
         "promo_freq_pct":     17.1,
-        "edlp_elasticity":   -1.320,
+        "edlp_elasticity":   -0.7495,
         "promo_elasticity":   0.00833,
         "cross_price_elast": -0.476,
         "competitor":         "Coke 12oz×12",
-        "r2":                 0.936,
-        "cv_r2":             -0.655,
+        "r2":                 0.9583,
+        "cv_r2":              0.9247,
         "strategy":           "Distribution-First",
         "strategy_color":     GREEN,
     },
@@ -161,12 +161,12 @@ MODEL_DATA = [
         "avg_price":          6.70,
         "avg_tpr_depth":      21.5,
         "promo_freq_pct":     79.0,
-        "edlp_elasticity":   -2.711,
+        "edlp_elasticity":   -2.3770,
         "promo_elasticity":   0.03173,
         "cross_price_elast": -0.164,
         "competitor":         "Pepsi 12oz×12",
-        "r2":                 0.968,
-        "cv_r2":              0.948,
+        "r2":                 0.9719,
+        "cv_r2":              0.9609,
         "strategy":           "EDLP",
         "strategy_color":     NAVY,
     },
@@ -179,12 +179,12 @@ MODEL_DATA = [
         "avg_price":          12.98,
         "avg_tpr_depth":      7.1,
         "promo_freq_pct":     17.1,
-        "edlp_elasticity":   -2.493,
+        "edlp_elasticity":   -1.6628,
         "promo_elasticity":   0.02893,
         "cross_price_elast": -0.682,
         "competitor":         "Pepsi 12oz×24",
-        "r2":                 0.935,
-        "cv_r2":              0.646,
+        "r2":                 0.9215,
+        "cv_r2":              0.8874,
         "strategy":           "Hi-Lo",
         "strategy_color":     RED,
     },
@@ -197,12 +197,12 @@ MODEL_DATA = [
         "avg_price":          6.08,
         "avg_tpr_depth":      31.7,
         "promo_freq_pct":     72.4,
-        "edlp_elasticity":   -1.574,
+        "edlp_elasticity":   -2.2662,
         "promo_elasticity":   0.02636,
         "cross_price_elast":  0.965,
         "competitor":         "Sprite 12oz×12",
-        "r2":                 0.976,
-        "cv_r2":              0.949,
+        "r2":                 0.9697,
+        "cv_r2":              0.9624,
         "strategy":           "Promo-Led",
         "strategy_color":     AMBER,
     },
@@ -215,12 +215,12 @@ MODEL_DATA = [
         "avg_price":          6.67,
         "avg_tpr_depth":      22.6,
         "promo_freq_pct":     75.2,
-        "edlp_elasticity":   -2.874,
+        "edlp_elasticity":   -2.3607,
         "promo_elasticity":   0.03097,
         "cross_price_elast": -0.302,
         "competitor":         "Mountain Dew 12oz×12",
-        "r2":                 0.952,
-        "cv_r2":              0.920,
+        "r2":                 0.9600,
+        "cv_r2":              0.9450,
         "strategy":           "EDLP",
         "strategy_color":     NAVY,
     },
@@ -233,12 +233,12 @@ MODEL_DATA = [
         "avg_price":          4.64,
         "avg_tpr_depth":      7.2,
         "promo_freq_pct":     13.3,
-        "edlp_elasticity":   -1.413,
+        "edlp_elasticity":   -1.6385,
         "promo_elasticity":   0.01242,
         "cross_price_elast": -0.597,
         "competitor":         "Mountain Dew 12oz×12",
-        "r2":                 0.623,
-        "cv_r2":             -0.084,
+        "r2":                 0.7158,
+        "cv_r2":              0.5839,
         "strategy":           "Distribution-First",
         "strategy_color":     GREEN,
     },
@@ -811,7 +811,7 @@ with tab_portfolio:
     rows = []
     with st.form("portfolio_form"):
         header_cols = st.columns([2.5, 1.5, 1.5, 1.5, 1.5, 1.5])
-        for ci, h in enumerate(["Product", "Brand", "Price Chg (%)", "TPR Depth (%)", "Strategy", "R²"]):
+        for ci, h in enumerate(["Product", "Brand", "Price Chg (%)", "TPR Depth (%)", "Strategy", "R² | CV R²"]):
             header_cols[ci].markdown(
                 f"<div style='font-size:12px; font-weight:700; color:{NAVY}; padding-bottom:6px;'>{h}</div>",
                 unsafe_allow_html=True)
@@ -842,10 +842,14 @@ with tab_portfolio:
                 f"border-radius:4px; font-size:11px; font-weight:700; margin-top:4px; "
                 f"text-align:center;'>{d['strategy']}</div>",
                 unsafe_allow_html=True)
-            r2_col = GREEN if d["r2"] > 0.90 else (AMBER if d["r2"] > 0.80 else RED)
+            r2_col  = GREEN if d["r2"] > 0.90 else (AMBER if d["r2"] > 0.80 else RED)
+            cvr2_col = GREEN if d["cv_r2"] > 0.85 else (AMBER if d["cv_r2"] > 0.70 else RED)
             c6.markdown(
-                f"<div style='font-size:13px; color:{r2_col}; font-weight:700; padding-top:8px;'>"
-                f"{d['r2']:.3f}</div>",
+                f"<div style='font-size:12px; font-weight:700; padding-top:4px;'>"
+                f"<span style='color:{r2_col};'>R2: {d['r2']:.3f}</span>"
+                f"<span style='color:#aaa; margin:0 3px;'>|</span>"
+                f"<span style='color:{cvr2_col};'>CV: {d['cv_r2']:.3f}</span>"
+                f"</div>",
                 unsafe_allow_html=True)
             inputs[lbl] = {"price_chg": pchg, "tpr_depth": tprd}
 
